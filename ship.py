@@ -13,16 +13,21 @@ class Ship:
         #对于每艘新飞船，都将其放在屏幕底部的中央。
         self.rect.midbottom = self.screen_rect.midbottom
 
+        #在飞船的属性x中存储小数值
+        self.x = float(self.rect.x)
         # 移动标志。
         self.moving_right = False
         self.moving_left = False
 
     def update(self):
         """根据移动标志调整飞船的位置。"""
+        #更新飞船而不是rect对象的x值
         if self.moving_right:
-            self.rect.x += 1
+            self.rect.x += self.settings.ship_speed
         if self.moving_left:
-            self.rect.x -= 1
+            self.rect.x -= self.settings.ship_speed
+        #根据self.x更新rect对象
+        self.rect.x = self.x
 
     def blitme(self):
         """在指定位置绘制飞船。"""
