@@ -33,6 +33,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
 
     def _check_events(self):
@@ -116,13 +117,17 @@ class AlienInvasion:
                 self._create_alien(alien_number, row_number)
 
     def _create_alien(self, alien_number, row_number):
-            # 创建一个外星人并将其加入当前行。
-            alien = Alien(self)
-            alien_width, alien_height = alien.rect.size
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x
-            alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
-            self.aliens.add(alien)
+        # 创建一个外星人并将其加入当前行。
+        alien = Alien(self)
+        alien_width, alien_height = alien.rect.size
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        self.aliens.add(alien)
+
+    def _update_aliens(self):
+        """更新外星人群中所有外星人的位置。"""
+        self.aliens.update()
 
 
 if __name__ == '__main__':
